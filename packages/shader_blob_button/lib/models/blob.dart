@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart';
 
 abstract class Blob {
-  Size size;
+  final Size area;
 
   final Vector2 basePosition;
+
+  final double baseRadius;
+
   Vector2 position;
 
   Vector2 velocity;
@@ -16,35 +19,47 @@ abstract class Blob {
   double radius;
 
   Blob({
-    required this.size,
+    required this.area,
     required this.position,
     required this.basePosition,
     required this.velocity,
     required this.radius,
+    required this.baseRadius,
   });
 
   update();
+
+  /// reduce the blob size according to time ratio
+  updateSize(double radius, double time) {
+    assert(time <= 1.0 && time >= 0, "time must be between 0 and 1");
+    var newRadius = lerpDouble(radius, baseRadius, time);
+    if (newRadius != null) {
+      this.radius = newRadius;
+    }
+  }
 
   toArray() {
     return [position.x, position.y, radius];
   }
 
   Map<String, dynamic> toJson() => {
-        'size': '${size.width}*${size.height}',
+        'size': '${area.width}*${area.height}',
         'position': '${position.x},${position.y}',
         'basePosition': '${basePosition.x},${basePosition.y}',
         'velocity': '${velocity.x},${velocity.y}',
         'radius': radius,
+        'baseRadius': baseRadius,
       };
 }
 
 class BasicBloc extends Blob {
   BasicBloc({
-    required super.size,
+    required super.area,
     required super.position,
     required super.basePosition,
     required super.velocity,
     required super.radius,
+    required super.baseRadius,
   });
 
   factory BasicBloc.random(Size area) {
@@ -56,21 +71,22 @@ class BasicBloc extends Blob {
     double radius = 40 + Random().nextDouble() * 50;
 
     return BasicBloc(
-      size: area,
+      area: area,
       basePosition: position.clone(),
       position: position.clone(),
       velocity: velocity,
       radius: radius,
+      baseRadius: radius,
     );
   }
 
   @override
   void update() {
     position.add(velocity);
-    if (position.x > size.width || position.x < 0) {
+    if (position.x > area.width || position.x < 0) {
       velocity = -velocity;
     }
-    if (position.y > size.height || position.y < 0) {
+    if (position.y > area.height || position.y < 0) {
       velocity = -velocity;
     }
   }
@@ -80,11 +96,12 @@ class BasicBloc extends Blob {
 /// - goes to the other side once touch a border
 class BouncingBloB extends Blob {
   BouncingBloB({
-    required super.size,
+    required super.area,
     required super.position,
     required super.basePosition,
     required super.velocity,
     required super.radius,
+    required super.baseRadius,
   });
 
   factory BouncingBloB.random(Size area) {
@@ -93,11 +110,12 @@ class BouncingBloB extends Blob {
     double radius = 25 + Random().nextDouble() * 40;
 
     return BouncingBloB(
-      size: area,
+      area: area,
       basePosition: position.clone(),
       position: position.clone(),
       velocity: velocity,
       radius: radius,
+      baseRadius: radius,
     );
   }
 
@@ -115,11 +133,12 @@ class BouncingBloB extends Blob {
 /// once touch a border directly recreated on the center
 class EjectedBloB extends Blob {
   EjectedBloB({
-    required super.size,
+    required super.area,
     required super.position,
     required super.basePosition,
     required super.velocity,
     required super.radius,
+    required super.baseRadius,
   });
 
   factory EjectedBloB.random(Size area) {
@@ -131,11 +150,12 @@ class EjectedBloB extends Blob {
     double radius = 6 + Random().nextDouble() * 10;
 
     return EjectedBloB(
-      size: area,
+      area: area,
       basePosition: position.clone(),
       position: position.clone(),
       velocity: velocity,
       radius: radius,
+      baseRadius: radius,
     );
   }
 
@@ -162,11 +182,12 @@ class RotatingBloB extends Blob {
   double angleAcceleration;
 
   RotatingBloB({
-    required super.size,
+    required super.area,
     required super.position,
     required super.basePosition,
     required super.velocity,
     required super.radius,
+    required super.baseRadius,
     required this.center,
     required this.angle,
     required this.angleVelocity,
@@ -186,12 +207,13 @@ class RotatingBloB extends Blob {
     double radius = minRadius + Random().nextDouble() * minRadius;
 
     return RotatingBloB(
-      size: area,
+      area: area,
       center: Vector2(area.width / 2, area.height / 2),
       basePosition: position.clone(),
       position: position.clone(),
       velocity: velocity,
       radius: radius,
+      baseRadius: radius,
       angle: 0,
       angleVelocity: 0,
       angleAcceleration: 0.05,
@@ -211,4 +233,7 @@ class RotatingBloB extends Blob {
     }
     angleAcceleration = randomDouble(-0.01, 0.01);
   }
+
+  // slow() {
+  // }
 }
