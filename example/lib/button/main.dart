@@ -1,5 +1,5 @@
-import 'package:blob_button/button.dart';
 import 'package:flutter/material.dart';
+import 'package:blob_button/blob_button.dart';
 
 void main() {
   runApp(const MyApp());

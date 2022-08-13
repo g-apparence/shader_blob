@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:blob_button/models/utils.dart';
 import 'package:vector_math/vector_math.dart';
+
+import 'utils.dart';
 
 abstract class Blob {
   final Size area;
