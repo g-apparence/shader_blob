@@ -100,5 +100,6 @@ The is 3 types of particles available in this package (feel free to create yours
 I'm always open to learn new things. <br>
 Don't hesitate suggesting any improvement, I love it. 
 ## Social
-
+You can reach me on:<br>
+[@mcflyDev on twitter](https://twitter.com/mcflyDev)
 
