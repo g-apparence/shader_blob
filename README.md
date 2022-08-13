@@ -74,8 +74,25 @@ BlobButton.bouncing(
 > You must provide exactly 8 blob
 > This is due to a current limitation of the flutter shader support
 
-
 An example is available in the example folder of this repository.
+
+## Customize
+The blob is generated using multiple particles that attracts each others. <br>
+A shader calculate the energy between those particles for each pixel of a canvas. <br>
+<br>
+You can customize your blob effects combining 8 particles.
+<br>
+The is 3 types of particles available in this package (feel free to create yours or suggest some 👍)
+- BasicParticle <br>
+*(randomly goes on one way and when touch a border bounce to the other side)*
+- EjectedParticle <br>
+*(Generated on the center and randomly goes out. Once it touch a border, it's generated on the center again)*
+- RotatingParticle <br>
+*(randomly move in a circle around the center.)*
+
+## How it works
+// coming soon
+
 
 ## Additional information
 - 👌 contributions or ideas accepted

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as math;
 
 import 'blob_layout.dart';
-import 'models/blob.dart';
+import 'models/particle.dart';
 
 class BlobButton extends StatefulWidget {
   final GestureTapCallback onTap;
   final Color? backgroundColor;
-  final List<Blob> blobs;
+  final List<Particle> blobs;
   final Size size;
   final Icon icon;
 
@@ -29,9 +29,9 @@ class BlobButton extends StatefulWidget {
     Color? backgroundColor,
   }) {
     Size area = const Size(100, 100);
-    List<Blob> blobs = [];
+    List<Particle> blobs = [];
     for (int i = 0; i < 8; i++) {
-      blobs.add(RotatingBloB.random(area));
+      blobs.add(RotatingParticle.random(area));
     }
     return BlobButton._(
       key: key,
@@ -72,7 +72,7 @@ class _BlobButtonState extends State<BlobButton>
 
   // TODO idea: create a build for the onTap effect and let user provide it's own if desired
   _btnTweenUpdate() {
-    var rotatingBlobs = widget.blobs.whereType<RotatingBloB>();
+    var rotatingBlobs = widget.blobs.whereType<RotatingParticle>();
     final area = widget.blobs.first.area;
     final minRadius = min(area.width, area.height) * 0.03;
     final center = math.Vector2(area.width / 2, area.height / 2);

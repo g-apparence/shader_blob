@@ -5,7 +5,7 @@ import 'package:vector_math/vector_math.dart';
 
 import 'utils.dart';
 
-abstract class Blob {
+abstract class Particle {
   final Size area;
 
   final Vector2 basePosition;
@@ -18,7 +18,7 @@ abstract class Blob {
 
   double radius;
 
-  Blob({
+  Particle({
     required this.area,
     required this.position,
     required this.basePosition,
@@ -52,8 +52,8 @@ abstract class Blob {
       };
 }
 
-class BasicBloc extends Blob {
-  BasicBloc({
+class BasicParticle extends Particle {
+  BasicParticle({
     required super.area,
     required super.position,
     required super.basePosition,
@@ -62,7 +62,7 @@ class BasicBloc extends Blob {
     required super.baseRadius,
   });
 
-  factory BasicBloc.random(Size area) {
+  factory BasicParticle.random(Size area) {
     Vector2 velocity = randomVector(-5, 5);
     Vector2 position = Vector2(
       Random().nextDouble() * area.width,
@@ -70,7 +70,7 @@ class BasicBloc extends Blob {
     );
     double radius = 40 + Random().nextDouble() * 50;
 
-    return BasicBloc(
+    return BasicParticle(
       area: area,
       basePosition: position.clone(),
       position: position.clone(),
@@ -94,8 +94,8 @@ class BasicBloc extends Blob {
 
 /// A blob that is init on the center
 /// - goes to the other side once touch a border
-class BouncingBloB extends Blob {
-  BouncingBloB({
+class BouncingParticle extends Particle {
+  BouncingParticle({
     required super.area,
     required super.position,
     required super.basePosition,
@@ -104,12 +104,12 @@ class BouncingBloB extends Blob {
     required super.baseRadius,
   });
 
-  factory BouncingBloB.random(Size area) {
+  factory BouncingParticle.random(Size area) {
     Vector2 velocity = randomVector(-2, 2);
     Vector2 position = Vector2(area.width / 2, area.height / 2);
     double radius = 25 + Random().nextDouble() * 40;
 
-    return BouncingBloB(
+    return BouncingParticle(
       area: area,
       basePosition: position.clone(),
       position: position.clone(),
@@ -131,8 +131,8 @@ class BouncingBloB extends Blob {
 
 /// A blob that is ejected from the center
 /// once touch a border directly recreated on the center
-class EjectedBloB extends Blob {
-  EjectedBloB({
+class EjectedParticle extends Particle {
+  EjectedParticle({
     required super.area,
     required super.position,
     required super.basePosition,
@@ -141,7 +141,7 @@ class EjectedBloB extends Blob {
     required super.baseRadius,
   });
 
-  factory EjectedBloB.random(Size area) {
+  factory EjectedParticle.random(Size area) {
     Vector2 velocity = Vector2(
       -5 + (Random().nextDouble() * 5) * 2,
       -5 + (Random().nextDouble() * 5) * 2,
@@ -149,7 +149,7 @@ class EjectedBloB extends Blob {
     Vector2 position = Vector2(area.width / 2, area.height / 2);
     double radius = 6 + Random().nextDouble() * 10;
 
-    return EjectedBloB(
+    return EjectedParticle(
       area: area,
       basePosition: position.clone(),
       position: position.clone(),
@@ -175,13 +175,13 @@ class EjectedBloB extends Blob {
 
 /// A blob that is init on the center
 /// - goes to the other side once touch a border
-class RotatingBloB extends Blob {
+class RotatingParticle extends Particle {
   Vector2 center;
   double angle; // in degree
   double angleVelocity;
   double angleAcceleration;
 
-  RotatingBloB({
+  RotatingParticle({
     required super.area,
     required super.position,
     required super.basePosition,
@@ -194,7 +194,7 @@ class RotatingBloB extends Blob {
     required this.angleAcceleration,
   });
 
-  factory RotatingBloB.random(Size area) {
+  factory RotatingParticle.random(Size area) {
     Vector2 velocity = randomVector(-2, 2);
     // change this for more strange effect
     final minRadius = min(area.width, area.height) * 0.1;
@@ -206,7 +206,7 @@ class RotatingBloB extends Blob {
             randomDouble(-minPosition, minPosition));
     double radius = minRadius + Random().nextDouble() * minRadius;
 
-    return RotatingBloB(
+    return RotatingParticle(
       area: area,
       center: Vector2(area.width / 2, area.height / 2),
       basePosition: position.clone(),

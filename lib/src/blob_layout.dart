@@ -4,14 +4,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'models/blob.dart';
+import 'models/particle.dart';
 
-typedef BlobListBuilder = List<Blob> Function(Size area);
+typedef BlobListBuilder = List<Particle> Function(Size area);
 
 class BlobLayout extends StatefulWidget {
   final BlobListBuilder? blobBuilder;
   final Color? blobsColor;
-  final List<Blob>? blobs;
+  final List<Particle>? blobs;
 
   const BlobLayout({
     Key? key,
@@ -30,7 +30,7 @@ class BlobLayout extends StatefulWidget {
       );
 
   factory BlobLayout.from({
-    required List<Blob> blobs,
+    required List<Particle> blobs,
     required Color blobsColor,
   }) =>
       BlobLayout(
@@ -50,9 +50,9 @@ class _BlobLayoutState extends State<BlobLayout>
 
   late Animation<double> _tween;
 
-  List<Blob>? _blobs;
+  List<Particle>? _blobs;
 
-  List<Blob>? get blobs => widget.blobs ?? _blobs;
+  List<Particle>? get blobs => widget.blobs ?? _blobs;
 
   @override
   void initState() {
