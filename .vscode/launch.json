@@ -8,7 +8,13 @@
             "name": "button example",
             "request": "launch",
             "type": "dart",
-            "program": "packages/shader_blob_button/example/lib/main.dart",
+            "program": "packages/shader_blob_button/example/lib/button/main.dart",
+        },
+        {
+            "name": "layout example",
+            "request": "launch",
+            "type": "dart",
+            "program": "packages/shader_blob_button/example/lib/layout/main.dart",
         },
     ]
 }

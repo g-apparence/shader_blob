@@ -1,17 +1,58 @@
-# Blob button
-This packages provides a blob button 
+//TODO IMAGE
+# Blob Flutter package
+Add fancy blobs to your flutter apps. 
 
 ## Features
+- blob layout
+- blob button
+- customize your blob as you want
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## Roadmap 
+- migrate shader to umbra
+- wait for flutter glsl int / array support
+- wait for flutter glsl output support 
 
 ## Getting started
+install the package
+add the package to your pubspec.yaml
+```json
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```
 
 ## Usage
+### Layout
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder. 
 
+```dart
+BlobLayout.from(
+    blobs: myBlobsList,
+    blobsColor: Colors.blue,
+)
+```
+
+or using the builder function (recommended)
+```dart
+BlobLayout.builder(
+    builder: (Size areaSize) => [
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+        RotatingBloB.random(area),
+    ],
+    blobsColor: Colors.blue,
+)
+RotatingBloB.random(area)
+```
+
+> You must provide exactly 8 blob
+> This is due to a current limitation of the flutter shader support
+
+### Button
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 
 
@@ -21,11 +62,6 @@ const like = 'sample';
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Social
 
-## Todo 
-- migrate shader to umbra
-- wait for flutter glsl int / array support
-- wait for flutter glsl output support 
+

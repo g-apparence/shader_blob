@@ -27,15 +27,9 @@ class BlobButton extends StatefulWidget {
   }) {
     Size area = const Size(100, 100);
     List<Blob> blobs = [];
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-    blobs.add(RotatingBloB.random(area));
-
+    for (int i = 0; i < 8; i++) {
+      blobs.add(RotatingBloB.random(area));
+    }
     return BlobButton._(
       key: key,
       backgroundColor: backgroundColor,
@@ -69,10 +63,10 @@ class _BlobButtonState extends State<BlobButton>
         curve: Curves.decelerate,
       ),
     );
-
     _btnTween.addListener(_btnTweenUpdate);
   }
 
+  // TODO idea: create a build for the onTap effect and let user provide it's own if desired
   _btnTweenUpdate() {
     var rotatingBlobs = widget.blobs.whereType<RotatingBloB>();
     final area = widget.blobs.first.area;
@@ -89,7 +83,6 @@ class _BlobButtonState extends State<BlobButton>
         bfPrime.scale(-0.02);
         blob.position.add(bfPrime);
       }
-      //print("(${_btnTween.status}) : $before => ${blob.position}");
     }
   }
 
@@ -114,13 +107,6 @@ class _BlobButtonState extends State<BlobButton>
         child: Stack(
           children: [
             Positioned.fill(
-              // child: AnimatedBuilder(
-              //   animation: _btnTween,
-              //   builder: (context, child) => BlobLayout.from(
-              //     blobs: widget.blobs,
-              //     blobsColor: widget.backgroundColor ?? Colors.blue,
-              //   ),
-              // ),
               child: BlobLayout.from(
                 blobs: widget.blobs,
                 blobsColor: widget.backgroundColor ?? Colors.blue,
