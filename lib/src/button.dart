@@ -11,6 +11,7 @@ class BlobButton extends StatefulWidget {
   final Color? backgroundColor;
   final List<Blob> blobs;
   final Size size;
+  final Icon icon;
 
   const BlobButton._({
     Key? key,
@@ -18,11 +19,13 @@ class BlobButton extends StatefulWidget {
     required this.backgroundColor,
     required this.size,
     required this.blobs,
+    required this.icon,
   }) : super(key: key);
 
   factory BlobButton.bouncing({
     Key? key,
     required GestureTapCallback onTap,
+    required Icon icon,
     Color? backgroundColor,
   }) {
     Size area = const Size(100, 100);
@@ -36,6 +39,7 @@ class BlobButton extends StatefulWidget {
       onTap: onTap,
       blobs: blobs,
       size: area,
+      icon: icon,
     );
   }
 
@@ -112,12 +116,8 @@ class _BlobButtonState extends State<BlobButton>
                 blobsColor: widget.backgroundColor ?? Colors.blue,
               ),
             ),
-            const Positioned.fill(
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 32,
-              ),
+            Positioned.fill(
+              child: widget.icon,
             ),
           ],
         ),

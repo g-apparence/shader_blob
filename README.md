@@ -1,6 +1,12 @@
-//TODO IMAGE
+<p>
+<img src="docs/title.png"/>
+</p>
+
 # Blob Flutter package
-Add fancy blobs to your flutter apps. 
+Add fancy blobs to your flutter apps. <br>
+You can now imagine many usage of blobs into your app (button, loader, background...).
+
+<img src="docs/gifs/blob_demo2.gif" width="200px"/>
 
 ## Features
 - blob layout
@@ -8,9 +14,13 @@ Add fancy blobs to your flutter apps.
 - customize your blob as you want
 
 ## Roadmap 
-- migrate shader to umbra
-- wait for flutter glsl int / array support
-- wait for flutter glsl output support 
+- improve documentation
+- migrate shader to umbra 
+- shader: wait for flutter glsl int / array support
+- shader: wait for flutter glsl output support 
+- shader: create a gradient version
+- button: add push effects
+- button: provide custom method to let user create it's own on push effects
 
 ## Getting started
 install the `flutter_blob` package.
@@ -47,11 +57,18 @@ BlobLayout.builder(
 An example is available in the example folder of this repository.
 
 ### Button
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+For now buttons only support icon. 
 
 ```dart
-const like = 'sample';
+BlobButton.bouncing(
+    onTap: () => print("do w/e you want"),
+    backgroundColor: Colors.amber[900],
+    icon: Icon(
+        Icons.add,
+        color: Colors.white,
+        size: 32,
+    ),
+)
 ```
 
 > You must provide exactly 8 blob
@@ -61,7 +78,10 @@ const like = 'sample';
 An example is available in the example folder of this repository.
 
 ## Additional information
-
+- 👌 contributions or ideas accepted
+- 🤝 I made this package learning how shaders works. <br> 
+I'm always open to learn new things. <br>
+Don't hesitate suggesting any improvement, I love it. 
 ## Social
 
 

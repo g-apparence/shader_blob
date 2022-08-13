@@ -109,6 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: BlobButton.bouncing(
         onTap: _incrementCounter,
         backgroundColor: Colors.amber[900],
+        icon: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 32,
+        ),
       ),
     );
   }
