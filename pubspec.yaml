@@ -1,7 +1,7 @@
-name: blob_button
-description: A new Flutter package project.
+name: flutter_blob
+description: A blob generator for flutter apps
 version: 0.0.1
-homepage: null
+homepage: https://github.com/g-apparence/shader_blob
 
 environment:
   sdk: ">=2.17.6 <3.0.0"

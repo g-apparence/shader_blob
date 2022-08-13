@@ -59,7 +59,7 @@ class _BlobLayoutState extends State<BlobLayout>
     super.initState();
     _loadShader = Future(() async {
       var file = await rootBundle
-          .load('packages/blob_button/assets/shaders/blob.sprv');
+          .load('packages/flutter_blob/assets/shaders/blob.sprv');
       return FragmentProgram.compile(
         spirv: file.buffer,
       );
