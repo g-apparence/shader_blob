@@ -39,14 +39,14 @@ or using the builder function (recommended)
 ```dart
 BlobLayout.builder(
     builder: (Size areaSize) => [
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
-        RotatingBloB.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
+        RotatingParticle.random(area),
     ],
     blobsColor: Colors.blue,
 )
